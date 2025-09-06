@@ -1,0 +1,176 @@
+л<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Для моей любимой ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Segoe Script', cursive;
+      color: white;
+      overflow: hidden;
+    }
+
+    /* Сцена 1 */
+    #start-scene {
+      text-align: center;
+    }
+
+    #start-btn {
+      font-size: 2em;
+      color: white;
+      background: transparent;
+      border: 2px solid white;
+      border-radius: 12px;
+      padding: 15px 30px;
+      cursor: pointer;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+      animation: pulse 1.2s infinite;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    #start-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.05);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    /* Терминал */
+    #terminal {
+      display: none;
+      background: black;
+      color: #00ff00;
+      font-family: monospace;
+      padding: 20px;
+      width: 80%;
+      height: 50%;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+      white-space: pre-wrap;
+    }
+
+    /* Сцена 2 */
+    #love-scene {
+      display: none;
+      text-align: center;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    #love-scene h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    #love-scene p {
+      font-size: 1.5em;
+      margin: 10px 0;
+    }
+
+    #flower {
+      width: 250px;
+      margin-top: 20px;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Анимация сердца */
+    .heart {
+      position: absolute;
+      color: rgba(255, 0, 100, 0.7);
+      font-size: 2em;
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Сцена 1 -->
+  <div id="start-scene">
+    <button id="start-btn">Нажми сюда, милая ❤️</button>
+  </div>
+
+  <!-- Терминал -->
+  <div id="terminal"></div>
+
+  <!-- Сцена 2 -->
+  <div id="love-scene">
+    <h1>Жаным, прости меня пожалуйста за все</h1>
+    <p>Я очень сильно люблю тебя милая, всем сердцем ❤️</p>
+    <p>Ты у меня самая лучшая, во всем мире, и я очень дорожу тобой 💎</p>
+    <img id="flower" src="https://krasnodarflora.ru/upload/resize_cache/iblock/98d/685_685_2/fwk814fbju1lu8xys34f3k6s7k6xnjph.jpg" alt="Цветы">
+  </div>
+
+  <script>
+    const startBtn = document.getElementById("start-btn");
+    const startScene = document.getElementById("start-scene");
+    const terminal = document.getElementById("terminal");
+    const loveScene = document.getElementById("love-scene");
+
+    // Текст для терминала
+    const codeLines = [
+      "booting system...",
+      "loading emotions...",
+      "initializing love protocol...",
+      "access granted ♥",
+      "connecting to my heart...",
+      "sending message..."
+    ];
+
+    startBtn.addEventListener("click", () => {
+      startScene.style.display = "none";
+      terminal.style.display = "block";
+      let i = 0;
+      let interval = setInterval(() => {
+        if (i < codeLines.length) {
+          terminal.innerHTML += codeLines[i] + "\\n";
+          i++;
+        } else {
+          clearInterval(interval);
+          setTimeout(() => {
+            terminal.style.display = "none";
+            loveScene.style.display = "block";
+            spawnHearts();
+          }, 2000);
+        }
+      }, 800);
+    });
+
+    // Функция для сердец
+    function spawnHearts() {
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.bottom = "0px";
+        heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+      }, 600);
+    }
+  </script>
+
+</body>
+</html>
+
